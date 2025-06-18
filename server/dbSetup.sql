@@ -18,3 +18,11 @@ CREATE TABLE quests (
     completed BOOLEAN,
     completed_by_id INT NOT NULL
 );
+
+SELECT *
+FROM heroes
+WHERE
+    level > 4
+    AND class = 'Sorcerer'
+ORDER BY id
+LIMIT 3;
