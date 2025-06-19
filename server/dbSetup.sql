@@ -26,3 +26,16 @@ WHERE
     AND class = 'Sorcerer'
 ORDER BY id
 LIMIT 3;
+
+-- NOTE Codeworks Example
+
+SELECT *
+FROM heroes
+WHERE
+    class = 'Sorcerer'
+ORDER BY level DESC
+LIMIT 3;
+
+SELECT name, guildId, guildName
+FROM heroes
+    JOIN guilds ON guilds.id = heroes.guildId;
