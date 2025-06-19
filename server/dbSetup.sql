@@ -66,17 +66,46 @@ ORDER BY name;
 
 -- -------------
 
-SELECT *
-FROM heroes
-WHERE
-    class = 'Sorcerer'
-ORDER BY level DESC
-LIMIT 3;
-
+-- Join Example
 SELECT name, guildId, guildName
 FROM heroes
     JOIN guilds ON guilds.id = heroes.guildId;
 
+-- Ambiguous Column Example
 SELECT heroes.id, heroes.name, heroes.guildId, guilds.id, guilds.guildName
 FROM heroes
     JOIN guilds ON guilds.id = heroes.guildId;
+
+-- Count Example
+SELECT COUNT(*) AS heroCount
+FROM heroes
+    JOIN classes ON classes.type = heroes.class
+WHERE
+    skills LIKE '%Magic%';
+
+-- Sum Example
+SELECT SUM(reputation) AS reputationSum FROM guilds;
+
+-- Group Concat Example
+SELECT GROUP_CONCAT(emoji) AS emojis FROM heroes;
+--       OR
+SELECT GROUP_CONCAT(DISTINCT class) AS allClasses FROM heroes;
+
+-- Group By Examples
+SELECT class, COUNT(*) AS count FROM heroes GROUP BY class;
+
+--              W/Where Statement
+SELECT location, COUNT(*) AS questCount
+FROM quests
+WHERE
+    completed = false
+GROUP BY
+    location;
+
+--               W/Join Statement
+SELECT classes.type, COUNT(heroes.id) AS classCount
+FROM classes
+    JOIN heroes ON heroes.class = classes.type
+GROUP BY
+    classes.type
+ORDER BY classCount DESC;
