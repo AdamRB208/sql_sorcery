@@ -1,3 +1,5 @@
+-- NOTE Table Examples
+
 CREATE TABLE IF NOT EXISTS accounts (
     id VARCHAR(255) NOT NULL PRIMARY KEY COMMENT 'primary key',
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Time Created',
@@ -19,7 +21,11 @@ CREATE TABLE quests (
     completed_by_id INT NOT NULL
 );
 
+-- --------------
+
 -- NOTE my attempts
+
+-- --------------
 
 SELECT *
 FROM heroes
@@ -27,6 +33,14 @@ WHERE
     level > 4
     AND class = 'Sorcerer'
 ORDER BY id
+LIMIT 3;
+
+-- NOTE correct answer
+SELECT *
+FROM heros
+WHERE
+    class = 'Sorcerer'
+ORDER BY level DESC
 LIMIT 3;
 
 SELECT heroes.name, heroes.class, heroes.emoji, guilds.guildName, classes.skills
@@ -46,7 +60,11 @@ FROM heroes
     JOIN classes ON classes.type = heroes.class
 ORDER BY name;
 
+-- -------------
+
 -- NOTE Codeworks Examples
+
+-- -------------
 
 SELECT *
 FROM heroes
