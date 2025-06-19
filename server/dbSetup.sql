@@ -27,6 +27,7 @@ CREATE TABLE quests (
 
 -- --------------
 
+-- Order By
 SELECT *
 FROM heroes
 WHERE
@@ -35,7 +36,7 @@ WHERE
 ORDER BY id
 LIMIT 3;
 
--- NOTE correct answer
+--  Correct Answer
 SELECT *
 FROM heros
 WHERE
@@ -43,12 +44,13 @@ WHERE
 ORDER BY level DESC
 LIMIT 3;
 
+-- Multiple Joins
 SELECT heroes.name, heroes.class, heroes.emoji, guilds.guildName, classes.skills
 FROM heroes
     INNER JOIN guilds ON guilds.id = heroes.guildId
     INNER JOIN classes ON classes.type = heroes.class;
 
--- NOTE correct answer
+-- Correct Answer
 SELECT
     name,
     class,
@@ -59,6 +61,22 @@ FROM heroes
     JOIN guilds ON guilds.id = heroes.guildId
     JOIN classes ON classes.type = heroes.class
 ORDER BY name;
+
+-- Group By
+SELECT COUNT(heroes.id) AS memberCount
+FROM guilds
+    JOIN heroes ON guilds.id = heroes.id
+GROUP BY
+    guilds.guildName,
+    guilds.banner,
+ORDER BY memberCount DESC;
+
+-- Correct Answer
+SELECT guildName, banner, COUNT(heroes.id) AS memberCount
+FROM guilds
+    JOIN heroes ON heroes.guildId = guilds.id
+GROUP BY
+    guilds.id;
 
 -- -------------
 
