@@ -19,6 +19,8 @@ CREATE TABLE quests (
     completed_by_id INT NOT NULL
 );
 
+-- NOTE my attempts
+
 SELECT *
 FROM heroes
 WHERE
@@ -27,7 +29,24 @@ WHERE
 ORDER BY id
 LIMIT 3;
 
--- NOTE Codeworks Example
+SELECT heroes.name, heroes.class, heroes.emoji, guilds.guildName, classes.skills
+FROM heroes
+    INNER JOIN guilds ON guilds.id = heroes.guildId
+    INNER JOIN classes ON classes.type = heroes.class;
+
+-- NOTE correct answer
+SELECT
+    name,
+    class,
+    emoji,
+    guildName,
+    skills
+FROM heroes
+    JOIN guilds ON guilds.id = heroes.guildId
+    JOIN classes ON classes.type = heroes.class
+ORDER BY name;
+
+-- NOTE Codeworks Examples
 
 SELECT *
 FROM heroes
@@ -37,5 +56,9 @@ ORDER BY level DESC
 LIMIT 3;
 
 SELECT name, guildId, guildName
+FROM heroes
+    JOIN guilds ON guilds.id = heroes.guildId;
+
+SELECT heroes.id, heroes.name, heroes.guildId, guilds.id, guilds.guildName
 FROM heroes
     JOIN guilds ON guilds.id = heroes.guildId;
